@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  SectionList,
-} from 'react-native';
+import { Image, View, Text, StyleSheet, FlatList } from 'react-native';
 
 import { RACES } from '../data/RacesData';
 import Header from '../components/ui/Header';

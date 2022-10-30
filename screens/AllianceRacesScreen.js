@@ -1,9 +1,9 @@
-import { View, StyleSheet, Text, FlatList, Image } from "react-native";
+import { View, StyleSheet, FlatList } from 'react-native';
 
-import { FACTIONS } from "../data/FactionsData";
-import colors from "../utilities/constants/colors";
-import FactionItem from "../components/FactionItem";
-import Header from "../components/ui/Header";
+import { FACTIONS } from '../data/FactionsData';
+import colors from '../utilities/constants/colors';
+import FactionItem from '../components/FactionItem';
+import Header from '../components/ui/Header';
 
 const AllianceRacesScreen = () => {
   const renderFactionItem = (faction) => {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.lightText,
     fontSize: 24,
-    textAlign: "center",
+    textAlign: 'center',
   },
   title: {
     color: colors.lightText,

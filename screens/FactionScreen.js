@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import colors from '../utilities/colors';
 import { FACTIONS } from '../data/FactionsData';
 import { StatusBar } from 'expo-status-bar';

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import colors from '../utilities/colors';
 
 import Header from '../components/ui/Header';
