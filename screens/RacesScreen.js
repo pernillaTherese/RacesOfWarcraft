@@ -1,13 +1,20 @@
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, useWindowDimensions } from 'react-native';
 
 import { RACES } from '../data/RacesData';
 import Header from '../components/ui/Header';
 import SubTitle from '../components/ui/SubTitle';
 import RaceItem from '../components/RaceItem';
+import colors from '../utilities/colors';
 
 const RacesScreen = ({ route }) => {
+  const { styles } = myStyles();
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
   const faction = route.params.faction;
-
   const displayedRaces = RACES.filter((race) => {
     return race.factionId === faction.id;
   });
@@ -18,15 +25,18 @@ const RacesScreen = ({ route }) => {
 
   return (
     <View style={styles.screen}>
-      <Header>Choose a Race</Header>
-      <SubTitle>{faction.title}</SubTitle>
       <View>
+        <Header>Choose a Race</Header>
+        <SubTitle>{faction.title}</SubTitle>
+      </View>
+      <View style={styles.listContainer}>
         <FlatList
           style={styles.list}
           data={displayedRaces}
-          numColumns={1}
+          numColumns='1'
           keyExtractor={(item) => item.id}
           renderItem={renderRace}
+          horizontal={landscape ? true : false}
         />
       </View>
     </View>
@@ -34,14 +44,26 @@ const RacesScreen = ({ route }) => {
 };
 export default RacesScreen;
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-  },
-  list: {
-    marginBottom: 150,
-  },
-});
+const myStyles = () => {
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
+  const styles = StyleSheet.create({
+    screen: {
+      flex: 1,
+      backgroundColor: colors.primaryBrown,
+    },
+    textContainer: {
+      flexDirection: 'column',
+    },
+    listContainer: {
+      flex: 1,
+      alignItems: 'center',
+      marginHorizontal: landscape ? width * 0.05 : 0,
+    },
+  });
+  return { styles };
+};

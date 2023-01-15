@@ -1,25 +1,28 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import colors from '../../utilities/colors';
 
 const Header = ({ children }) => {
-  return (
-    <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>{children}</Text>
-    </View>
-  );
+  const { styles } = myStyles();
+  return <Text style={styles.headerText}>{children}</Text>;
 };
 
 export default Header;
 
-const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-    margin: 12,
-  },
-  headerText: {
-    color: colors.primaryGold,
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginHorizontal: 12,
-  },
-});
+const myStyles = () => {
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
+
+  const styles = StyleSheet.create({
+    headerText: {
+      color: colors.primaryGold,
+      fontSize: landscape ? height * 0.1 : width * 0.1,
+      fontWeight: 'bold',
+      marginStart: width * 0.05,
+    },
+  });
+  return { styles };
+};
