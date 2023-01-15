@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Alert,
-  Button,
   Image,
   useWindowDimensions,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import NavButton from './ui/NavButton';
-import colors from '../utilities/colors';
 
 const Camera = () => {
   const { styles } = myStyles();

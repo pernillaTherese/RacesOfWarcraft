@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  FlatList,
-  SafeAreaView,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { StyleSheet, FlatList, useWindowDimensions, View } from 'react-native';
 import colors from '../utilities/colors';
 import { FACTIONS } from '../data/FactionsData';
 
@@ -60,7 +54,6 @@ const myStyles = () => {
     listContainer: {
       flex: 1,
       alignItems: landscape ? 'center' : 'flex-start',
-      // backgroundColor: colors.classColorPaladin,
     },
   });
   return { styles };

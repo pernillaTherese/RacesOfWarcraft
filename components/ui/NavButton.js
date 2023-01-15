@@ -32,7 +32,7 @@ const myStyles = () => {
       backgroundColor: colors.primaryGold,
       borderColor: colors.secondaryText,
       borderWidth: 2,
-      width: landscape ? width * 0.5 : width * 0.8,
+      width: landscape ? width * 0.4 : width * 0.8,
       borderRadius: 18,
       overflow: 'hidden',
     },

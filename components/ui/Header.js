@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import { Text, StyleSheet, useWindowDimensions } from 'react-native';
 import colors from '../../utilities/colors';
 
 const Header = ({ children }) => {
