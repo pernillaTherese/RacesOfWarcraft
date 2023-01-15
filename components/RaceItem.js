@@ -1,50 +1,63 @@
-import { View, Text, Pressable, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  Image,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Colors from '../utilities/colors';
+import colors from '../utilities/colors';
 
 const RaceItem = ({ item }) => {
+  const { styles } = myStyles();
   const navigation = useNavigation();
   const onSelectedItemHandler = () => {
     navigation.navigate('RaceDetails', { id: item.id });
   };
 
   return (
-    <View style={styles.container}>
-      <Pressable onPress={onSelectedItemHandler}>
-        <Text style={styles.titleText}>{item.title}</Text>
-        <Image style={styles.image} source={item.imageUrl} />
-      </Pressable>
-    </View>
+    <Pressable style={styles.container} onPress={onSelectedItemHandler}>
+      <Text style={styles.titleText}>{item.title}</Text>
+      <Image style={styles.image} source={item.imageUrl} />
+    </Pressable>
   );
 };
 
 export default RaceItem;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'flex-start',
-    marginHorizontal: 20,
-    padding: 12,
-    paddingTop: 30,
-    marginTop: 50,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: Colors.black,
-  },
-  image: {
-    width: 300,
-    height: 400,
-    resizeMode: 'cover',
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.black,
-    marginHorizontal: 12,
-  },
-});
+const myStyles = () => {
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      height: landscape ? height * 0.5 : height * 0.4,
+      width: landscape ? width * 0.4 : width * 0.9,
+      backgroundColor: colors.white,
+      marginHorizontal: landscape ? height * 0.05 : width * 0.05,
+      marginVertical: 15,
+      borderRadius: 20,
+      overflow: 'hidden',
+    },
+    titleText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: colors.black,
+      marginHorizontal: 12,
+      marginTop: 12,
+      alignSelf: 'flex-start',
+    },
+    image: {
+      flex: 1,
+      resizeMode: 'contain',
+      alignSelf: 'center',
+    },
+  });
+  return { styles };
+};

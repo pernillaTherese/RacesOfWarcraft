@@ -3,9 +3,10 @@
     "name": "RacesOfWarcraft",
     "slug": "RacesOfWarcraft",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
+    "statusBarStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,6 +20,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "androidStatusbar": {
+    "backgroundColor": "#231e17"
     },
     "android": {
       "adaptiveIcon": {

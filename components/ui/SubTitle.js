@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native';
-import Colors from '../../utilities/colors';
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
+import colors from '../../utilities/colors';
 
 const SubTitle = ({ children }) => {
+  const { styles } = myStyles();
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{children}</Text>
@@ -9,15 +10,23 @@ const SubTitle = ({ children }) => {
   );
 };
 export default SubTitle;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    marginStart: 12,
-  },
-  text: {
-    color: Colors.black,
-    fontSize: 20,
-    marginHorizontal: 12,
-  },
-});
+const myStyles = () => {
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      marginLeft: width * 0.05,
+    },
+    text: {
+      color: colors.textLight,
+      fontSize: 20,
+      marginBottom: landscape ? height * 0.05 : height * 0.02,
+    },
+  });
+  return { styles };
+};

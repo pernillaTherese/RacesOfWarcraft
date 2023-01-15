@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import { Fragment } from 'react';
-
+import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -9,28 +8,28 @@ import FactionScreen from './screens/FactionScreen';
 import RacesScreen from './screens/RacesScreen';
 import RaceDetailScreen from './screens/RaceDetailScreen';
 
-import Colors from './utilities/colors';
+import colors from './utilities/colors';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <Fragment>
+    <>
+      <StatusBar translucent backgroundColor='transparent' />
       <NavigationContainer>
-        <StatusBar style='light' />
         <Stack.Navigator
+          name='Home'
           screenOptions={{
-            title: 'Home',
-            headerStyle: { backgroundColor: Colors.primaryOrange },
-            headerTintColor: Colors.primaryBrown,
+            headerStyle: { backgroundColor: colors.primaryBrown },
+            headerTintColor: colors.textLight,
+            headerTitleStyle: { fontWeight: 'light' },
           }}
         >
           <Stack.Screen
             name='Main'
             component={MainScreen}
             options={{
-              title: 'Home',
-              headerStyle: { backgroundColor: Colors.primaryBrown },
+              headerShown: false,
             }}
           />
           <Stack.Screen
@@ -52,6 +51,6 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </Fragment>
+    </>
   );
 }

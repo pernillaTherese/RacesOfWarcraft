@@ -1,7 +1,15 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 import colors from '../../utilities/colors';
 
 const NavButton = ({ children, onPressed }) => {
+  const { styles } = myStyles();
+
   return (
     <View style={styles.buttonContainer}>
       <Pressable onPress={onPressed}>
@@ -12,20 +20,29 @@ const NavButton = ({ children, onPressed }) => {
 };
 export default NavButton;
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    backgroundColor: colors.primaryGold,
-    borderColor: colors.secondaryText,
-    borderWidth: 2,
-    margin: 20,
-    borderRadius: 18,
-    overflow: 'hidden',
-  },
-  buttonText: {
-    color: colors.secondaryText,
-    paddingVertical: 8,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});
+const myStyles = () => {
+  const { width, height } = useWindowDimensions();
+  if (width > height) {
+    var landscape = true;
+  } else {
+    landscape = false;
+  }
+  const styles = StyleSheet.create({
+    buttonContainer: {
+      backgroundColor: colors.primaryGold,
+      borderColor: colors.secondaryText,
+      borderWidth: 2,
+      width: landscape ? width * 0.5 : width * 0.8,
+      borderRadius: 18,
+      overflow: 'hidden',
+    },
+    buttonText: {
+      color: colors.secondaryText,
+      paddingVertical: 8,
+      textAlign: 'center',
+      fontWeight: 'bold',
+      fontSize: 20,
+    },
+  });
+  return { styles };
+};
